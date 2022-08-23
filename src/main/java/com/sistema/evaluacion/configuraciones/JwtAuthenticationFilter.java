@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.configuraciones;
 
-import com.sistema.evaluacion.services.imp.UserDetailsServiceImpl;
+import com.sistema.evaluacion.services.imp.UserDetailsServiceImp;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImp userDetailsService;
 
     @Autowired
     private JwtUtils jwtUtil;

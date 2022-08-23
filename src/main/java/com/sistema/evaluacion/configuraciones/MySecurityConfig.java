@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.configuraciones;
 
-import com.sistema.evaluacion.services.imp.UserDetailsServiceImpl;
+import com.sistema.evaluacion.services.imp.UserDetailsServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,8 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
@@ -26,7 +24,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsServiceImpl;
+    private UserDetailsServiceImp userDetailsServiceImp;
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -44,7 +42,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsServiceImpl).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(this.userDetailsServiceImp).passwordEncoder(passwordEncoder());
     }
 
     @Override

@@ -15,7 +15,7 @@ public class UserController {
     private IUserService iUserService;
 
     @PostMapping("save")
-    ResponseEntity<?> saveUser(@RequestBody User user){
+    ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
         return new ResponseEntity<>(iUserService.saveUser(user), HttpStatus.CREATED);
     }
 

@@ -25,11 +25,11 @@ public class UserServiceImp implements IUserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public User saveUser(User user){
+    public User saveUser(User user) throws Exception{
         User userLocal = iUserRepository.findByUsername(user.getUsername());
         if (userLocal != null){
             System.out.println("el usuario ya existe");
-//             throw new Exception("el usuario ya existe");
+             throw new Exception("el usuario ya existe");
         }else{
             Rol rol = new Rol();
             rol.setId(2L);

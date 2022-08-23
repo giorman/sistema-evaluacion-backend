@@ -2,12 +2,17 @@ package com.sistema.evaluacion.controllers;
 
 import com.sistema.evaluacion.configuraciones.JwtUtils;
 import com.sistema.evaluacion.models.JwtRequest;
-import com.sistema.evaluacion.models.User;
-import com.sistema.evaluacion.services.imp.UserDetailsServiceImpl;
+import com.sistema.evaluacion.models.JwtResponse;
+import com.sistema.evaluacion.services.IAuthenticationService;
+import com.sistema.evaluacion.services.imp.UserDetailsServiceImp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +23,15 @@ import java.security.Principal;
 public class AuthenticationController {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImp userDetailsService;
 
     @Autowired
-    private JwtUtils jwtUtils;
+    private IAuthenticationService iAuthenticationService;
+
 
     @PostMapping("login")
-    public ResponseEntity<?> generateToken(@RequestBody User user) throws Exception {
-
-        UserDetails userDetails =  this.userDetailsService.loadUserByUsername(user.getUsername());
-        String token = this.jwtUtils.generateToken(userDetails);
-        return ResponseEntity.ok(token);
+    public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest) throws Exception {
+        return iAuthenticationService.generateToken(jwtRequest);
     }
 
 
