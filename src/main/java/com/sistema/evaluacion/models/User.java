@@ -1,5 +1,6 @@
 package com.sistema.evaluacion.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,7 @@ public class User implements UserDetails {
     private String profile;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JsonBackReference
     @JoinTable(name = "users_rols",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "rol_id",referencedColumnName = "id"))
@@ -48,7 +50,6 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         Set<Authority> autoridades = new HashSet<>();
         this.rols.forEach(usuarioRol -> {
             autoridades.add(new Authority(usuarioRol.getName()));
@@ -57,21 +58,25 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isAccountNonLocked() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
     @Override
+    @JsonIgnore
     public boolean isEnabled() {
         return true;
     }
