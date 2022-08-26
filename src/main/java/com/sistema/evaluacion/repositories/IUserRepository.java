@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.repositories;
 
-import com.sistema.evaluacion.models.User;
+import com.sistema.evaluacion.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

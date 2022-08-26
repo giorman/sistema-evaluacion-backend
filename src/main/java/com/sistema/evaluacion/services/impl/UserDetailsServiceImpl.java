@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.services.impl;
 
-import com.sistema.evaluacion.models.User;
+import com.sistema.evaluacion.entities.User;
 import com.sistema.evaluacion.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.services;
 
-import com.sistema.evaluacion.models.User;
+import com.sistema.evaluacion.entities.User;
 
 
 public interface IUserService {

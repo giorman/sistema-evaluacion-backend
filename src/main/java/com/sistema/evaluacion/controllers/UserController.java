@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.controllers;
 
-import com.sistema.evaluacion.models.User;
+import com.sistema.evaluacion.entities.User;
 import com.sistema.evaluacion.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,8 @@
 package com.sistema.evaluacion.services.impl;
 
 import com.sistema.evaluacion.security.JwtUtils;
-import com.sistema.evaluacion.models.JwtRequest;
-import com.sistema.evaluacion.models.JwtResponse;
+import com.sistema.evaluacion.entities.JwtRequest;
+import com.sistema.evaluacion.entities.JwtResponse;
 import com.sistema.evaluacion.services.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

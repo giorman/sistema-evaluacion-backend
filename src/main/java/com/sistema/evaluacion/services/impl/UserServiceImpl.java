@@ -1,8 +1,8 @@
 package com.sistema.evaluacion.services.impl;
 
 import com.sistema.evaluacion.config.exceptions.NonUniqueUsernameException;
-import com.sistema.evaluacion.models.Rol;
-import com.sistema.evaluacion.models.User;
+import com.sistema.evaluacion.entities.Rol;
+import com.sistema.evaluacion.entities.User;
 import com.sistema.evaluacion.repositories.IRolRepository;
 import com.sistema.evaluacion.repositories.IUserRepository;
 import com.sistema.evaluacion.services.IUserService;
@@ -11,7 +11,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.NonUniqueResultException;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;

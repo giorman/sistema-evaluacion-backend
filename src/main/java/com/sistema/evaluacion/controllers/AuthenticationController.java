@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.controllers;
 
-import com.sistema.evaluacion.models.JwtRequest;
+import com.sistema.evaluacion.entities.JwtRequest;
 import com.sistema.evaluacion.services.IAuthenticationService;
 import com.sistema.evaluacion.services.impl.UserDetailsServiceImpl;
 

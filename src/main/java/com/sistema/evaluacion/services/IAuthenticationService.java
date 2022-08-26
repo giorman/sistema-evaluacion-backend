@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.services;
 
-import com.sistema.evaluacion.models.JwtRequest;
+import com.sistema.evaluacion.entities.JwtRequest;
 import org.springframework.http.ResponseEntity;
 
 public interface IAuthenticationService {

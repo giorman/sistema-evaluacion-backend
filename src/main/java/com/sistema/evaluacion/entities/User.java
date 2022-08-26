@@ -1,4 +1,4 @@
-package com.sistema.evaluacion.models;
+package com.sistema.evaluacion.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;

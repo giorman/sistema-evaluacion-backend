@@ -1,4 +1,4 @@
-package com.sistema.evaluacion.models;
+package com.sistema.evaluacion.entities;
 
 public class JwtRequest {
 
