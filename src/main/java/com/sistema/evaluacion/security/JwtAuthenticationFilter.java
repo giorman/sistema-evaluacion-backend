@@ -1,7 +1,9 @@
-package com.sistema.evaluacion.configuraciones;
+package com.sistema.evaluacion.security;
 
-import com.sistema.evaluacion.services.imp.UserDetailsServiceImp;
-import io.jsonwebtoken.ExpiredJwtException;
+import com.sistema.evaluacion.config.exceptions.BadTokenJwtException;
+import com.sistema.evaluacion.config.exceptions.ExpiredJwtException;
+import com.sistema.evaluacion.services.impl.UserDetailsServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,7 +22,7 @@ import java.io.IOException;
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
-    private UserDetailsServiceImp userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private JwtUtils jwtUtil;
@@ -36,12 +38,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             try{
                 username = this.jwtUtil.extractUsername(jwtToken);
             }catch (ExpiredJwtException exception){
-                System.out.println("El token ha expirado");
+                throw new ExpiredJwtException("El token ha expirado");
             }catch (Exception e){
                 e.printStackTrace();
+                throw new BadTokenJwtException("El token no es valido");
             }
-
         }else{
+            //System.out.println("Token invalido , no empieza con bearer string");
         }
 
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
@@ -52,7 +55,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
             }
         }else{
-            System.out.println("El token no es valido");
+        // El usuario no se encuentra autenticado
         }
         filterChain.doFilter(request,response);
     }

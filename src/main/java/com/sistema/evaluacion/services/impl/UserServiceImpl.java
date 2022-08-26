@@ -1,4 +1,4 @@
-package com.sistema.evaluacion.services.imp;
+package com.sistema.evaluacion.services.impl;
 
 import com.sistema.evaluacion.models.Rol;
 import com.sistema.evaluacion.models.User;
@@ -9,11 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class UserServiceImp implements IUserService {
+public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IUserRepository iUserRepository;
@@ -25,11 +26,11 @@ public class UserServiceImp implements IUserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public User saveUser(User user) throws Exception{
+    public User saveUser(User user){
         User userLocal = iUserRepository.findByUsername(user.getUsername());
         if (userLocal != null){
             System.out.println("el usuario ya existe");
-             throw new Exception("el usuario ya existe");
+             throw new EntityNotFoundException("el usuario ya existe");
         }else{
             Rol rol = new Rol();
             rol.setId(2L);

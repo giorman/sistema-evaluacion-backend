@@ -13,7 +13,6 @@ import java.util.Set;
 @Table(name = "rols")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

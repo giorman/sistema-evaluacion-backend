@@ -4,7 +4,7 @@ import com.sistema.evaluacion.models.User;
 
 
 public interface IUserService {
-    User saveUser(User user)throws Exception;
+    User saveUser(User user);
 
     User searchUser(String username);
 

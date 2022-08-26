@@ -1,6 +1,6 @@
-package com.sistema.evaluacion.services.imp;
+package com.sistema.evaluacion.services.impl;
 
-import com.sistema.evaluacion.configuraciones.JwtUtils;
+import com.sistema.evaluacion.security.JwtUtils;
 import com.sistema.evaluacion.models.JwtRequest;
 import com.sistema.evaluacion.models.JwtResponse;
 import com.sistema.evaluacion.services.IAuthenticationService;
@@ -14,25 +14,26 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
-public class AuthenticationServiceImp implements IAuthenticationService {
+public class AuthenticationServiceImpl implements IAuthenticationService {
 
     @Autowired
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserDetailsServiceImp userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private JwtUtils jwtUtils;
 
     @Override
-    public ResponseEntity<?> generateToken(JwtRequest jwtRequest) throws Exception {
+    public ResponseEntity<?> generateToken(JwtRequest jwtRequest) {
         try{
             authentication(jwtRequest.getUsername(),jwtRequest.getPassword());
         }catch (Exception exception){
-            exception.printStackTrace();
-            throw new Exception("Usuario no encontrado");
+            throw new EntityNotFoundException("Credenciales invalidas");
         }
         UserDetails userDetails =  this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
         String token = this.jwtUtils.generateToken(userDetails);
@@ -47,6 +48,8 @@ public class AuthenticationServiceImp implements IAuthenticationService {
             throw  new Exception("USUARIO DESHABILITADO " + exception.getMessage());
         }catch (BadCredentialsException e){
             throw  new Exception("Credenciales invalidas " + e.getMessage());
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 

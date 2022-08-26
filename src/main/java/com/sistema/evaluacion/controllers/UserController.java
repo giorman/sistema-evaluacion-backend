@@ -15,19 +15,18 @@ public class UserController {
     private IUserService iUserService;
 
     @PostMapping("save")
-    ResponseEntity<?> saveUser(@RequestBody User user) throws Exception {
+    ResponseEntity<?> saveUser(@RequestBody User user) {
         return new ResponseEntity<>(iUserService.saveUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping("get/{username}")
     ResponseEntity<?> searchUser(@PathVariable String username){
-
         return new ResponseEntity<>(iUserService.searchUser(username), HttpStatus.OK);
     }
 
     @DeleteMapping("delete/{id}")
     ResponseEntity<?> searchUser(@PathVariable Long id){
         iUserService.deleteUser(id);
-        return new ResponseEntity<>( HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.NO_CONTENT);
     }
 }

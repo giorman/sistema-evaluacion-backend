@@ -1,4 +1,4 @@
-package com.sistema.evaluacion.configuraciones;
+package com.sistema.evaluacion.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

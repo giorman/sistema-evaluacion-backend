@@ -8,9 +8,6 @@ public class JwtResponse {
         this.token = token;
     }
 
-    public JwtResponse() {
-    }
-
     public String getToken() {
         return token;
     }

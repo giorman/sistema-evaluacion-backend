@@ -1,6 +1,6 @@
-package com.sistema.evaluacion.configuraciones;
+package com.sistema.evaluacion.security;
 
-import com.sistema.evaluacion.services.imp.UserDetailsServiceImp;
+import com.sistema.evaluacion.services.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtAuthenticationEntryPoint unauthorizedHandler;
 
     @Autowired
-    private UserDetailsServiceImp userDetailsServiceImp;
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
@@ -42,7 +42,7 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userDetailsServiceImp).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(this.userDetailsServiceImpl).passwordEncoder(passwordEncoder());
     }
 
     @Override
