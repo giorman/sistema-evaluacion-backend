@@ -2,13 +2,13 @@ package com.sistema.evaluacion.config;
 
 import com.sistema.evaluacion.config.exceptions.BadTokenJwtException;
 import com.sistema.evaluacion.config.exceptions.ExpiredJwtException;
+import com.sistema.evaluacion.config.exceptions.NonUniqueUsernameException;
 import com.sistema.evaluacion.models.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
-
 import javax.persistence.EntityNotFoundException;
 
 @ControllerAdvice(annotations = RestController.class)
@@ -19,14 +19,14 @@ public class ConfigException {
         return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(BadTokenJwtException.class)
-    public ResponseEntity<?> badTokenJwtException(Exception e){
-        return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.BAD_REQUEST);
+    @ExceptionHandler({ExpiredJwtException.class ,BadTokenJwtException.class})
+    public ResponseEntity<?> expiredJwtException(Exception e){
+        return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(ExpiredJwtException.class)
-    public ResponseEntity<?> expiredjwtException(Exception e){
-        return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.BAD_GATEWAY);
+    @ExceptionHandler(NonUniqueUsernameException.class)
+    public ResponseEntity<?> nonUniqueResultException(Exception e){
+        return new ResponseEntity<>(new Message(e.getMessage()), HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
 }

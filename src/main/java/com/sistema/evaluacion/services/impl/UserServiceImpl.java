@@ -1,5 +1,6 @@
 package com.sistema.evaluacion.services.impl;
 
+import com.sistema.evaluacion.config.exceptions.NonUniqueUsernameException;
 import com.sistema.evaluacion.models.Rol;
 import com.sistema.evaluacion.models.User;
 import com.sistema.evaluacion.repositories.IRolRepository;
@@ -10,7 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NonUniqueResultException;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -27,11 +30,10 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User saveUser(User user){
-        User userLocal = iUserRepository.findByUsername(user.getUsername());
-        if (userLocal != null){
-            System.out.println("el usuario ya existe");
-             throw new EntityNotFoundException("el usuario ya existe");
-        }else{
+        User userResult = iUserRepository.findByUsername(user.getUsername());
+        if (userResult != null){
+             throw new NonUniqueUsernameException("el nombre de usuario ya esta en uso");
+        }
             Rol rol = new Rol();
             rol.setId(2L);
             Set<Rol> roles = new HashSet<>();
@@ -40,19 +42,24 @@ public class UserServiceImpl implements IUserService {
             user.setEnable(true);
             user.setProfile("default.png");
             user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-            userLocal= iUserRepository.save(user);
-        }
-        return userLocal;
+        return iUserRepository.save(user);
     }
 
     @Override
     public User searchUser(String username) {
-        return iUserRepository.findByUsername(username);
+        User userResult=iUserRepository.findByUsername(username);
+        if (userResult == null) {
+            throw new EntityNotFoundException("El usuario no existe");
+        }
+        return userResult;
     }
 
     @Override
     public void deleteUser(Long id) {
+        Optional<User> userOptional= iUserRepository.findById(id);
+        if (!userOptional.isPresent()){
+            throw new EntityNotFoundException("El usuario no existe");
+        }
      iUserRepository.deleteById(id);
-
     }
 }
