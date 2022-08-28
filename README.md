@@ -1,10 +1,10 @@
-# Proyecto Combo Digital-Backend
+# Proyecto Sistema de Evaluaciones-Backend
 
-## Repositorio Frontend [Enlace](https://github.com/giorman/combodigital-frontend)
+## Repositorio Frontend [Enlace](https://github.com/giorman/sistema-evaluacion-frontend)
 
-# [Demo](https://giorman.github.io/combodigital-frontend/)
+# [Demo](https://giorman.github.io/sistema-evaluacion-frontend/)
 
--  Este [enlace](https://giorman.github.io/combodigital-frontend/) es un demo de la app que se encuentra su front-end en gitpages y su backend en heroku
+-  Este [enlace](https://giorman.github.io/sistema-evaluacion-frontend/) es un demo de la app que se encuentra su front-end en gitpages y su backend en heroku
 
 ## Recomendaciones
 
@@ -12,8 +12,10 @@
 
 ## Tecnologias
 
-* Java version 11
-* Spring boot version 2.5.0
+* Java version 8
+* Spring boot version 2.7.3
+* Spring Security
+* JWT
 * MySql
 
 ## Ramas
@@ -22,6 +24,6 @@
 
 ## Configuracion en local 
 
-* Ejecutar el archivo dbcombo.sql
+* Ejecutar el archivo dbevaluaciones.sql
 
 
