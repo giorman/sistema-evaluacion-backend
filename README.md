@@ -2,9 +2,11 @@
 
 ## Repositorio Frontend [Enlace](https://github.com/giorman/sistema-evaluacion-frontend)
 
-# [Demo](https://giorman.github.io/sistema-evaluacion-frontend/)
+## Documentacion Api [Swagger](https://api-demo-sistema-evaluacion.herokuapp.com/swagger-ui/index.html#)
 
--  Este [enlace](https://giorman.github.io/sistema-evaluacion-frontend/) es un demo de la app que se encuentra su front-end en gitpages y su backend en heroku
+## Aplicacion [demo](https://giorman.github.io/sistema-evaluacion-frontend/)
+
+-  Este [enlace](https://giorman.github.io/sistema-evaluacion-frontend/) es un demo de la app donde su front-end se encuentra alojado en github pages y su backend en heroku
 
 ## Recomendaciones
 
@@ -24,6 +26,6 @@
 
 ## Configuracion en local 
 
-* Ejecutar el archivo dbevaluaciones.sql
+* Ejecutar el archivo dbevaluaciones.sql para instalar la base de datos
 
 
