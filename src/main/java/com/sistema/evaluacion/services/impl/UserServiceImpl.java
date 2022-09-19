@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.services.impl;
 
-import com.sistema.evaluacion.config.exceptions.NonUniqueUsernameException;
+import com.sistema.evaluacion.exceptions.NonUniqueUsernameException;
 import com.sistema.evaluacion.entities.Rol;
 import com.sistema.evaluacion.entities.User;
 import com.sistema.evaluacion.repositories.IRolRepository;

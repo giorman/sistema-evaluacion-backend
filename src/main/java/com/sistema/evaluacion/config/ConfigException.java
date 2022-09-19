@@ -1,8 +1,8 @@
 package com.sistema.evaluacion.config;
 
-import com.sistema.evaluacion.config.exceptions.BadTokenJwtException;
-import com.sistema.evaluacion.config.exceptions.ExpiredJwtException;
-import com.sistema.evaluacion.config.exceptions.NonUniqueUsernameException;
+import com.sistema.evaluacion.exceptions.BadTokenJwtException;
+import com.sistema.evaluacion.exceptions.ExpiredJwtException;
+import com.sistema.evaluacion.exceptions.NonUniqueUsernameException;
 import com.sistema.evaluacion.entities.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

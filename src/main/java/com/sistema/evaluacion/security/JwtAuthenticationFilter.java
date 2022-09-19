@@ -1,7 +1,7 @@
 package com.sistema.evaluacion.security;
 
-import com.sistema.evaluacion.config.exceptions.BadTokenJwtException;
-import com.sistema.evaluacion.config.exceptions.ExpiredJwtException;
+import com.sistema.evaluacion.exceptions.BadTokenJwtException;
+import com.sistema.evaluacion.exceptions.ExpiredJwtException;
 import com.sistema.evaluacion.services.impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;

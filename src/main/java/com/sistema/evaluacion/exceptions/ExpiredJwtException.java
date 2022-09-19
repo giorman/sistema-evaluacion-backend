@@ -1,4 +1,4 @@
-package com.sistema.evaluacion.config.exceptions;
+package com.sistema.evaluacion.exceptions;
 
 public class ExpiredJwtException extends RuntimeException{
     public ExpiredJwtException(String message) {

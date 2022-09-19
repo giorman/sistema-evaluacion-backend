@@ -1,4 +1,4 @@
-package com.sistema.evaluacion.swagger;
+package com.sistema.evaluacion.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
