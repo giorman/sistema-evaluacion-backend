@@ -1,7 +1,8 @@
-package com.sistema.evaluacion.entities;
+package com.sistema.evaluacion.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.sistema.evaluacion.models.dtos.Authority;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;

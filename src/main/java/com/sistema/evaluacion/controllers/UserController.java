@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.controllers;
 
-import com.sistema.evaluacion.entities.User;
+import com.sistema.evaluacion.models.entities.User;
 import com.sistema.evaluacion.services.IUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -21,6 +21,12 @@ public class UserController {
     @ApiOperation("Guardar un usuario")
     ResponseEntity<?> saveUser(@RequestBody User user) {
         return new ResponseEntity<>(iUserService.saveUser(user), HttpStatus.CREATED);
+    }
+
+    @PutMapping ("user")
+    @ApiOperation("Actualizar un usuario")
+    ResponseEntity<?> updateUser(@RequestBody User user) {
+        return new ResponseEntity<>(iUserService.saveUser(user), HttpStatus.OK);
     }
 
     @GetMapping("user/{username}")

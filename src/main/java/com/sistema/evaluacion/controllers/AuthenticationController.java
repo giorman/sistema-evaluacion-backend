@@ -1,6 +1,6 @@
 package com.sistema.evaluacion.controllers;
 
-import com.sistema.evaluacion.entities.JwtRequest;
+import com.sistema.evaluacion.models.dtos.JwtRequestDto;
 import com.sistema.evaluacion.services.IAuthenticationService;
 import com.sistema.evaluacion.services.impl.UserDetailsServiceImpl;
 
@@ -27,8 +27,8 @@ public class AuthenticationController {
 
     @PostMapping("login")
     @ApiOperation("Generador de un token")
-    public ResponseEntity<?> generateToken(@RequestBody JwtRequest jwtRequest){
-        return iAuthenticationService.generateToken(jwtRequest);
+    public ResponseEntity<?> generateToken(@RequestBody JwtRequestDto jwtRequestDto){
+        return iAuthenticationService.generateToken(jwtRequestDto);
     }
 
     @GetMapping("current-user")

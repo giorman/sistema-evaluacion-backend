@@ -1,4 +1,4 @@
-package com.sistema.evaluacion.entities;
+package com.sistema.evaluacion.models.dtos;
 
 import org.springframework.security.core.GrantedAuthority;
 

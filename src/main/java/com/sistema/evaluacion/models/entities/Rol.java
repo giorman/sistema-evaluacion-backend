@@ -1,4 +1,4 @@
-package com.sistema.evaluacion.entities;
+package com.sistema.evaluacion.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -26,7 +26,5 @@ public class Rol {
             joinColumns = @JoinColumn(name = "rol_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"))
     private Set<User> users = new HashSet<>();
-
-
 
 }

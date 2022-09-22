@@ -1,8 +1,8 @@
 package com.sistema.evaluacion.services.impl;
 
+import com.sistema.evaluacion.models.dtos.JwtRequestDto;
+import com.sistema.evaluacion.models.dtos.JwtResponseDto;
 import com.sistema.evaluacion.security.JwtUtils;
-import com.sistema.evaluacion.entities.JwtRequest;
-import com.sistema.evaluacion.entities.JwtResponse;
 import com.sistema.evaluacion.services.IAuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,26 +29,26 @@ public class AuthenticationServiceImpl implements IAuthenticationService {
     private JwtUtils jwtUtils;
 
     @Override
-    public ResponseEntity<?> generateToken(JwtRequest jwtRequest) {
-        try{
-            authentication(jwtRequest.getUsername(),jwtRequest.getPassword());
-        }catch (Exception exception){
+    public ResponseEntity<?> generateToken(JwtRequestDto jwtRequestDto) {
+        try {
+            authentication(jwtRequestDto.getUsername(), jwtRequestDto.getPassword());
+        } catch (Exception exception) {
             throw new EntityNotFoundException("Credenciales invalidas");
         }
-        UserDetails userDetails =  this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(jwtRequestDto.getUsername());
         String token = this.jwtUtils.generateToken(userDetails);
-        return new ResponseEntity<>(new JwtResponse(token), HttpStatus.OK);
+        return new ResponseEntity<>(new JwtResponseDto(token), HttpStatus.OK);
     }
 
     @Override
-    public void authentication(String username, String password) throws Exception{
-        try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username,password));
-        }catch (DisabledException exception){
-            throw  new Exception("USUARIO DESHABILITADO " + exception.getMessage());
-        }catch (BadCredentialsException e){
-            throw  new Exception("Credenciales invalidas " + e.getMessage());
-        }catch (Exception e){
+    public void authentication(String username, String password) throws Exception {
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+        } catch (DisabledException exception) {
+            throw new Exception("USUARIO DESHABILITADO " + exception.getMessage());
+        } catch (BadCredentialsException e) {
+            throw new Exception("Credenciales invalidas " + e.getMessage());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
