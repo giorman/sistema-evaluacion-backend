@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Set;
 
@@ -61,26 +63,7 @@ public class QuestionServiceImpl implements IQuestionService {
 
     @Override
     public ResultDto getResult(List<Question> questions) {
-        double pointMax = 0;
-        int corrects = 0;
-        int intent = 0;
-
-        for (Question q : questions) {
-            Question question = questionRepository.findById(q.getId()).get();
-            if (question.getResponseCorrect().equals(q.getResponseUser())) {
-                corrects++;
-                double point = questions.get(0).getEvaluation().getPointMax() / questions.size();
-                pointMax += point;
-            }
-            if (q.getResponseUser() != null) {
-                intent++;
-            }
-        }
-
-        ResultDto resultDto = new ResultDto();
-        resultDto.setPointMax(pointMax);
-        resultDto.setNumberCorrect(corrects);
-        resultDto.setIntent(intent);
+        ResultDto resultDto = getResultDto(questions);
         return resultDto;
     }
 
@@ -90,5 +73,27 @@ public class QuestionServiceImpl implements IQuestionService {
             throw new EntityNotFoundException("La pregunta que intenta eliminar no existe");
         }
         questionRepository.deleteById(id);
+    }
+
+    private ResultDto getResultDto(List<Question> questions) {
+        double pointMax = 0;
+        int corrects = 0;
+
+        for (Question q : questions) {
+            Question question = questionRepository.findById(q.getId()).get();
+            if (question.getResponseCorrect().equals(q.getResponseUser())) {
+                corrects++;
+                double point = questions.get(0).getEvaluation().getPointMax()/(double) questions.size();
+                pointMax += point;
+            }
+        }
+
+        BigDecimal value = new BigDecimal(pointMax);
+        BigDecimal roundValue = value.setScale(2, RoundingMode.HALF_UP);
+
+        ResultDto resultDto = new ResultDto();
+        resultDto.setPointMax(roundValue);
+        resultDto.setNumberCorrect(corrects);
+        return resultDto;
     }
 }
