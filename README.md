@@ -4,7 +4,7 @@
 
 ## Aplicación [Demo](https://giorman.github.io/sistema-evaluacion-frontend/)
 
-* Este [Enlace](https://giorman.github.io/sistema-evaluacion-frontend/) es un demo de la app donde su front-end se encuentra alojado en GitHub Pages y su backend en Heroku
+* Este [Enlace](https://giorman.github.io/sistema-evaluacion-frontend/) es un demo de la app donde su frontend se encuentra alojado en GitHub Pages y su backend en Heroku
 
 * Se recomienda esperar un momento y recargar la app mientras se activa el servidor donde está alojado el backend
 
@@ -14,7 +14,7 @@
 
 * Java version 8
 * Spring boot version 2.7.3
-* Spring Security
+* Spring security
 * Swagger
 * JWT
 * MySQL
